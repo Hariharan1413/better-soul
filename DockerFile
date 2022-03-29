@@ -1,0 +1,14 @@
+FROM python:3.8.10
+LABEL maintainer='amalthundiyil0@gmail.com'
+
+# for psycopg2-binary
+RUN sudo apt-get install libpq-dev
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+COPY ./app.py ./requirements.txt /usr/src/app/
+RUN pip install -r requirements.txt
+
+ENTRYPOINT [ "flask" ]
+CMD ["run", "--host=0.0.0.0", "--port=5000"]

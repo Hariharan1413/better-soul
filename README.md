@@ -1,1 +1,1 @@
-# smart-healthcare-dapp
+# Smart Healthcare DApp
