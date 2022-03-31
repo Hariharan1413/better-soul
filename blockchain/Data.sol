@@ -1,34 +1,23 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity >=0.5.0 < 0.9.0;
+pragma solidity ^0.8.0;
 
-contract Records {
+contract SampleContract {
+    
     struct Patient {
         string data;
         address id;
     }
+    mapping (address => Patient) public myMap;
 
-    address[] public doctorList;
-
-    mapping (address => Patient) patientInfo;
-    uint numberOfPatients = 0;
-
-    // modifier onlyDoctor() {
-    //     for (uint i=0; i < doctorList.length; i++) {
-    //         if (msg.sender == doctorList[i])
-    //         require(msg.sender);
-    //     }
-
-    // }
-
-    function getPatient(address _patientAddress) public view returns(address) {
-        return _patientAddress;
+    function set(address _addr, string memory data) public {
+        Patient storage newPatient = myMap[_addr];
+        newPatient.id = _addr;
+        newPatient.data = data;
+    }
+    
+    function get(address _addr) public view returns (Patient memory) {
+        return myMap[_addr];
     }
 
-    function addPatient(string memory _data, address _patientAddress) public {
-        Patient storage newPatient = patientInfo[numberOfPatients];
-        numberOfPatients++;
-        newPatient.id = _patientAddress;
-        newPatient.data = _data;
-    }
 }
