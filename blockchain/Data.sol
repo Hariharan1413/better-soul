@@ -19,5 +19,4 @@ contract SampleContract {
     function get(address _addr) public view returns (Patient memory) {
         return myMap[_addr];
     }
-
 }
